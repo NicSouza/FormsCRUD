@@ -81,11 +81,6 @@ public class CRUDControllerVeiculo implements Initializable{
 
     @FXML
     private TableView<veiculoForm> veiculo_tableView;
-    
-    @FXML
-    void veiculoSelectData(MouseEvent event) {
-
-    }
         
     private Connection connect;
     private PreparedStatement prepare;
