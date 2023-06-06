@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  *
@@ -71,6 +72,18 @@ public class CRUDController implements Initializable {
 
     @FXML
     private TableView<pessoaForm> pessoa_tableView;
+    
+     @FXML
+    private AnchorPane formPessoaFront;
+
+    @FXML
+    private Button formPessoa_btn;
+
+    @FXML
+    private AnchorPane formVeiculoFront;
+
+    @FXML
+    private Button formVeiculo_btn;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -330,6 +343,18 @@ public class CRUDController implements Initializable {
         pessoa_Nacionalidade.setText(String.valueOf(pData.getNacionalidade()));
 
     }
+    
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == formPessoa_btn) {
+            formPessoaFront.setVisible(true);
+            formVeiculoFront.setVisible(false);
+        } else if (event.getSource() == formVeiculo_btn) {
+            formPessoaFront.setVisible(false);
+            formVeiculoFront.setVisible(true);
+        }
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -337,6 +362,10 @@ public class CRUDController implements Initializable {
         pessoaSexoList();
 
         pessoaShowData();
+        
+        formPessoa_btn.setOnAction(this::switchForm);
+        formVeiculo_btn.setOnAction(this::switchForm);
+
     }
 
 }

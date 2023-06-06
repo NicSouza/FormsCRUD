@@ -38,7 +38,7 @@
          <right>
             <AnchorPane prefHeight="487.0" prefWidth="382.0">
                <children>
-                  <Label layoutX="97.0" layoutY="132.0" text="Bem vindo!" textFill="#9e20a0">
+                  <Label layoutX="97.0" layoutY="132.0" text="Bem vindo!" textFill="#645cbb">
                      <font>
                         <Font name="Arial Black" size="31.0" />
                      </font>

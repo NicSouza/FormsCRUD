@@ -15,7 +15,7 @@
 }
 
 .btn{
-    -fx-background-color: linear-gradient(to bottom right, #9e20a0, #5a3375);
+    -fx-background-color:#645CBB;
     -fx-text-fill: #fff;
     -fx-cursor: hand;
 }
@@ -44,4 +44,14 @@
 
 .table-view .column-header, .filter{
     -fx-backgroundcolor: transparent;
+}
+
+.purple-form{
+    -fx-background-color: linear-gradient(to bottom right, #645CBB, #BFACE2);
+}
+
+.btn-border{
+    -fx-border-color: #fff;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
 }
