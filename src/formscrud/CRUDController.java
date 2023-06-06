@@ -1,5 +1,6 @@
 package formscrud;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -27,6 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -72,15 +78,9 @@ public class CRUDController implements Initializable {
 
     @FXML
     private TableView<pessoaForm> pessoa_tableView;
-    
-     @FXML
-    private AnchorPane formPessoaFront;
 
     @FXML
     private Button formPessoa_btn;
-
-    @FXML
-    private AnchorPane formVeiculoFront;
 
     @FXML
     private Button formVeiculo_btn;
@@ -344,17 +344,15 @@ public class CRUDController implements Initializable {
 
     }
     
-    public void switchForm(ActionEvent event) {
-        if (event.getSource() == formPessoa_btn) {
-            formPessoaFront.setVisible(true);
-            formVeiculoFront.setVisible(false);
-        } else if (event.getSource() == formVeiculo_btn) {
-            formPessoaFront.setVisible(false);
-            formVeiculoFront.setVisible(true);
-        }
+    public void changeToCrudFormVeiculo(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("crudFormVeiculo.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
-
+   
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -362,9 +360,6 @@ public class CRUDController implements Initializable {
         pessoaSexoList();
 
         pessoaShowData();
-        
-        formPessoa_btn.setOnAction(this::switchForm);
-        formVeiculo_btn.setOnAction(this::switchForm);
 
     }
 

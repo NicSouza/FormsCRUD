@@ -61,7 +61,7 @@
                                     <String fx:value="btn-border" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="formPessoa_btn" layoutX="34.0" layoutY="296.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Pessoa" textFill="WHITE">
+                              <Button fx:id="formPessoa_btn" layoutX="34.0" layoutY="296.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Pessoa" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
@@ -77,7 +77,7 @@
                                     <String fx:value="btn-border" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="formVeiculo_btn" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Veículo" textFill="WHITE">
+                              <Button fx:id="formVeiculo_btn" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" onAction="#changeToCrudFormVeiculo" stylesheets="@crudDesign.css" text="Veículo" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
@@ -106,7 +106,7 @@
                <center>
                   <AnchorPane prefHeight="600.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="formPessoaFront" layoutY="-1.0" prefHeight="655.0" prefWidth="1137.0" visible="false">
+                        <AnchorPane layoutY="-1.0" prefHeight="655.0" prefWidth="1137.0">
                            <children>
                               <AnchorPane prefHeight="643.0" prefWidth="815.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -170,82 +170,6 @@
                                        </font>
                                     </Button>
                                     <Button fx:id="pessoa_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#pessoaDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
-                              <Separator orientation="VERTICAL" prefHeight="567.0" prefWidth="8.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="formVeiculoFront" layoutX="10.0" layoutY="9.0" prefHeight="655.0" prefWidth="1137.0">
-                           <children>
-                              <AnchorPane prefHeight="635.0" prefWidth="813.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="13.0">
-                                 <styleClass>
-                                    <String fx:value="border" />
-                                    <String fx:value="white-form" />
-                                 </styleClass>
-                                 <children>
-                                    <TableView fx:id="pessoa_tableView1" layoutX="12.0" layoutY="12.0" onMouseClicked="#pessoaSelectData" prefHeight="548.0" prefWidth="706.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="11.0">
-                                       <columns>
-                                          <TableColumn fx:id="pessoa_colunaCPF1" prefWidth="266.4000244140625" text="Placa" />
-                                          <TableColumn fx:id="pessoa_colunaNome1" prefWidth="147.199951171875" text="Tipo" />
-                                          <TableColumn fx:id="pessoa_colunaNacionalidade1" prefWidth="155.2000732421875" text="Modelo" />
-                                          <TableColumn fx:id="pessoa_colunaSexo1" prefWidth="136.80010986328125" text="Cor" />
-                                       </columns>
-                                       <columnResizePolicy>
-                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                       </columnResizePolicy>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="635.0" prefWidth="302.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="13.0">
-                                 <styleClass>
-                                    <String fx:value="border" />
-                                    <String fx:value="white-form" />
-                                 </styleClass>
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="21.0" text="Placa">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="pessoa_CPF1" layoutX="14.0" layoutY="48.0" prefHeight="30.0" prefWidth="277.0" />
-                                    <Label layoutX="14.0" layoutY="96.0" text="Tipo">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="pessoa_Nome1" layoutX="14.0" layoutY="274.0" prefHeight="30.0" prefWidth="279.0" />
-                                    <Label layoutX="14.0" layoutY="172.0" text="Modelo">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="veiculo_Modelo" layoutX="14.0" layoutY="199.0" prefHeight="30.0" prefWidth="280.0" />
-                                    <Label layoutX="14.0" layoutY="248.0" text="Cor">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="veiculo_Tipo" layoutX="11.0" layoutY="125.0" prefHeight="33.0" prefWidth="280.0" />
-                                    <Button fx:id="pessoa_addBtn1" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" onAction="#pessoaAddBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="pessoa_editarBtn1" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" onAction="#pessoaUpdateBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="pessoa_limparBtn1" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" onAction="#pessoaClearBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="pessoa_DeletarBtn1" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#pessoaDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
