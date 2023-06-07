@@ -326,7 +326,7 @@ public class CRUDControllerLugar implements Initializable {
         lugar_tableView.setItems(lugarForm);
     }
 
-    public void pessoaSelectData() {
+    public void lugarSelectData() {
         lugarForm lData = lugar_tableView.getSelectionModel().getSelectedItem();
         int num = lugar_tableView.getSelectionModel().getSelectedIndex();
 

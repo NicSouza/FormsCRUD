@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1480.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1480.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="formscrud.CRUDControllerLugar">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -114,7 +114,7 @@
                                     <String fx:value="white-form" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="lugar_tableView" layoutX="13.0" layoutY="13.0" prefHeight="619.0" prefWidth="790.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="12.0">
+                                    <TableView fx:id="lugar_tableView" layoutX="13.0" layoutY="13.0" onMouseClicked="#lugarSelectData" prefHeight="619.0" prefWidth="790.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="12.0">
                                       <columns>
                                         <TableColumn fx:id="lugar_colunaCNPJ" prefWidth="266.4000244140625" text="CNPJ" />
                                         <TableColumn fx:id="lugar_colunaLocal" prefWidth="147.199951171875" text="Local" />
@@ -154,22 +154,22 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="lugar_Acomodacao" layoutX="13.0" layoutY="275.0" prefHeight="33.0" prefWidth="280.0" />
-                                    <Button fx:id="lugar_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
+                                    <Button fx:id="lugar_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" onAction="#lugarAddBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="lugar_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
+                                    <Button fx:id="lugar_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" onAction="#lugarUpdateBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="lugar_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
+                                    <Button fx:id="lugar_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" onAction="#lugarClearBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="lugar_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
+                                    <Button fx:id="lugar_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#lugarDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
