@@ -29,7 +29,7 @@
                               <String fx:value="purple-form" />
                            </styleClass>
                            <children>
-                              <Button fx:id="formLugar_btn" layoutX="34.0" layoutY="423.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Lugar" textFill="WHITE">
+                              <Button fx:id="formLugar_btn" layoutX="34.0" layoutY="423.0" mnemonicParsing="false" onAction="#changeToCrudFormLugar" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Lugar" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
