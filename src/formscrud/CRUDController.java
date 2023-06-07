@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -985,7 +987,253 @@ public class CRUDController implements Initializable {
     }
 
     // VIAGEM
+    public void viagemAddBtn() {
 
+        connect = database.connect();
+
+        try {
+
+            if (viagem_Passagem.getText().isEmpty()
+                    || viagem_Origem.getText().isEmpty()
+                    || viagem_Destino.getText().isEmpty()
+                    || viagem_Ida.getValue() == null
+                    || viagem_Chegada.getValue() == null) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha todos os campos");
+                alert.showAndWait();
+            } else {
+                String checkData = "SELECT passagem FROM viagem WHERE passagem = "
+                        + viagem_Passagem.getText();
+
+                prepare = connect.prepareStatement(checkData);
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("A passagem: " + viagem_Passagem.getText() + " já foi adicionada");
+                    alert.showAndWait();
+                } else {
+                    String insertData = "INSERT INTO viagem (passagem, origem, destino, ida, chegada)"
+                            + "VALUES(?,?,?,?,?)";
+                    prepare = connect.prepareStatement(insertData);
+                    prepare.setString(1, viagem_Passagem.getText());
+                    prepare.setString(2, viagem_Origem.getText());
+                    prepare.setString(3, viagem_Destino.getText());
+                    prepare.setDate(4, java.sql.Date.valueOf(viagem_Ida.getValue().toString()));
+                    prepare.setDate(5, java.sql.Date.valueOf(viagem_Chegada.getValue().toString()));
+
+
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Dados adicionados!");
+                    alert.showAndWait();
+
+                    prepare.executeUpdate();
+
+                    viagemShowData();
+
+                    viagemClearBtn();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void viagemUpdateBtn() {
+
+        connect = database.connect();
+
+        try {
+
+            if (viagem_Passagem.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Preencha todos os campos");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Você tem certeza que deseja editar os dados?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    String updateData = "UPDATE viagem SET "
+                            + "origem = ?, "
+                            + "destino = ?, "
+                            + "ida = ?, "
+                            + "chegada = ? "
+                            + "WHERE passagem = ?";
+
+                    prepare = connect.prepareStatement(updateData);
+                    prepare.setString(1, viagem_Origem.getText());
+                    prepare.setString(2, viagem_Destino.getText());
+                    prepare.setDate(3, java.sql.Date.valueOf(viagem_Ida.getValue()));
+                    prepare.setDate(4, java.sql.Date.valueOf(viagem_Chegada.getValue()));
+                    prepare.setString(5, viagem_Passagem.getText());
+
+                    prepare.executeUpdate();
+
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Dados alterados com sucesso!");
+                    alert.showAndWait();
+
+                    viagemShowData();
+                    viagemClearBtn();
+                } else {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cancelado");
+                    alert.showAndWait();
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void viagemDeleteBtn() {
+        connect = database.connect();
+
+        try {
+            if (viagem_Passagem.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Por favor, informe a passagem para excluir o registro.");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Você tem certeza que deseja excluir os dados?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get().equals(ButtonType.OK)) {
+                    String deleteData = "DELETE FROM viagem WHERE passagem = ?";
+
+                    prepare = connect.prepareStatement(deleteData);
+                    prepare.setString(1, viagem_Passagem.getText());
+
+                    int rowsAffected = prepare.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Registro excluído com sucesso!");
+                        alert.showAndWait();
+
+                        viagemShowData();
+                        viagemClearBtn();
+                    } else {
+                        alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Registro não encontrado.");
+                        alert.showAndWait();
+                    }
+                } else {
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Cancelado");
+                    alert.showAndWait();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void viagemClearBtn() {
+        viagem_Passagem.setText("");
+        viagem_Origem.setText("");
+        viagem_Destino.setText("");
+        viagem_Ida.setValue(null);
+        viagem_Chegada.setValue(null);
+    }
+
+
+    public ObservableList<viagemForm> viagemListData() {
+
+        ObservableList<viagemForm> listData = FXCollections.observableArrayList();
+
+        String selectData = "SELECT * FROM viagem";
+
+        connect = database.connect();
+
+        try {
+
+            prepare = connect.prepareStatement(selectData);
+            result = prepare.executeQuery();
+
+            viagemForm gData;
+
+            while (result.next()) {
+                gData = new viagemForm(result.getInt("passagem"),
+                        result.getString("origem"), result.getString("destino"),
+                        result.getDate("ida"), result.getDate("chegada"));
+
+                listData.add(gData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listData;
+    }
+
+    private ObservableList<viagemForm> viagemForm;
+
+    public void viagemShowData() {
+        viagemForm = viagemListData();
+
+        viagem_colunaPassagem.setCellValueFactory(new PropertyValueFactory<>("passagem"));
+        viagem_colunaOrigem.setCellValueFactory(new PropertyValueFactory<>("origem"));
+        viagem_colunaDestino.setCellValueFactory(new PropertyValueFactory<>("destino"));
+        viagem_colunaIda.setCellValueFactory(new PropertyValueFactory<>("ida"));
+        viagem_colunaChegada.setCellValueFactory(new PropertyValueFactory<>("chegada"));
+
+        viagem_tableView.setItems(viagemForm);
+    }
+
+    public void viagemSelectData() {
+        viagemForm gData = viagem_tableView.getSelectionModel().getSelectedItem();
+        int num = viagem_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < - 1) {
+            return;
+        }
+
+        viagem_Passagem.setText(String.valueOf(gData.getPassagem()));
+        viagem_Origem.setText(String.valueOf(gData.getOrigem()));
+        viagem_Destino.setText(String.valueOf(gData.getDestino()));
+
+        // Preencher as datas
+        LocalDate ida = gData.getDataIda().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate chegada = gData.getDataChegada().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        viagem_Ida.setValue(ida);
+        viagem_Chegada.setValue(chegada);
+    }
+    
     //TROCA DE FORMS
    public void switchForm(ActionEvent event){
         

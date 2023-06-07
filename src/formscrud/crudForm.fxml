@@ -330,7 +330,7 @@
                                     <String fx:value="white-form" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="viagem_tableView" layoutX="16.0" layoutY="9.0" prefHeight="629.0" prefWidth="786.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0">
+                                    <TableView fx:id="viagem_tableView" layoutX="16.0" layoutY="9.0" onMouseClicked="#viagemSelectData" prefHeight="629.0" prefWidth="786.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="8.0">
                                        <columns>
                                           <TableColumn fx:id="viagem_colunaPassagem" prefWidth="173.5999755859375" text="Passagem" />
                                           <TableColumn fx:id="viagem_colunaOrigem" prefWidth="168.00006103515625" text="Origem" />
@@ -370,22 +370,22 @@
                                           <Font name="Arial" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="viagem_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
+                                    <Button fx:id="viagem_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" onAction="#viagemAddBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="viagem_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
+                                    <Button fx:id="viagem_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" onAction="#viagemUpdateBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="viagem_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
+                                    <Button fx:id="viagem_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" onAction="#viagemClearBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="viagem_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
+                                    <Button fx:id="viagem_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#viagemDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
