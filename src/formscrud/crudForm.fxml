@@ -29,7 +29,7 @@
                               <String fx:value="purple-form" />
                            </styleClass>
                            <children>
-                              <Button fx:id="formLugar_btn" layoutX="34.0" layoutY="423.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Lugar" textFill="WHITE">
+                              <Button fx:id="formLugar_btn" layoutX="34.0" layoutY="423.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Lugar" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
@@ -61,7 +61,7 @@
                                     <String fx:value="btn-border" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="formPessoa_btn" layoutX="34.0" layoutY="296.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Pessoa" textFill="WHITE">
+                              <Button fx:id="formPessoa_btn" layoutX="34.0" layoutY="296.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Pessoa" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
@@ -77,7 +77,7 @@
                                     <String fx:value="btn-border" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="formVeiculo_btn" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="250.0" onAction="#changeToCrudFormVeiculo" stylesheets="@crudDesign.css" text="Veículo" textFill="WHITE">
+                              <Button fx:id="formVeiculo_btn" layoutX="34.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="44.0" prefWidth="250.0" stylesheets="@crudDesign.css" text="Veículo" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="19.0" />
                                  </font>
@@ -106,7 +106,7 @@
                <center>
                   <AnchorPane prefHeight="600.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-1.0" prefHeight="655.0" prefWidth="1137.0">
+                        <AnchorPane fx:id="PessoaFrontForm" layoutY="-10.0" prefHeight="655.0" prefWidth="1137.0" visible="false">
                            <children>
                               <AnchorPane prefHeight="643.0" prefWidth="815.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -170,6 +170,152 @@
                                        </font>
                                     </Button>
                                     <Button fx:id="pessoa_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#pessoaDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <Separator orientation="VERTICAL" prefHeight="567.0" prefWidth="8.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="VeiculoFrontForm" layoutX="10.0" layoutY="9.0" prefHeight="655.0" prefWidth="1137.0">
+                           <children>
+                              <AnchorPane prefHeight="647.0" prefWidth="810.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="white-form" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="veiculo_tableView" layoutX="15.0" layoutY="8.0" onMouseClicked="#veiculoSelectData" prefHeight="635.0" prefWidth="784.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="7.0">
+                                       <columns>
+                                          <TableColumn fx:id="veiculo_colunaPlaca" prefWidth="266.4000244140625" text="Placa" />
+                                          <TableColumn fx:id="veiculo_colunaTipo" prefWidth="147.199951171875" text="Tipo" />
+                                          <TableColumn fx:id="veiculo_colunaModelo" prefWidth="155.2000732421875" text="Modelo" />
+                                          <TableColumn fx:id="veiculo_colunaCor" prefWidth="136.80010986328125" text="Cor" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="648.0" prefWidth="302.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="0.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="white-form" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="21.0" text="Placa">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="veiculo_Placa" layoutX="14.0" layoutY="48.0" prefHeight="30.0" prefWidth="277.0" />
+                                    <Label layoutX="14.0" layoutY="96.0" text="Tipo">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="veiculo_Cor" layoutX="15.0" layoutY="274.0" prefHeight="30.0" prefWidth="279.0" />
+                                    <Label layoutX="14.0" layoutY="172.0" text="Modelo">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="veiculo_Modelo" layoutX="14.0" layoutY="199.0" prefHeight="30.0" prefWidth="280.0" />
+                                    <Label layoutX="14.0" layoutY="248.0" text="Cor">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="veiculo_Tipo" layoutX="14.0" layoutY="126.0" prefHeight="33.0" prefWidth="280.0" />
+                                    <Button fx:id="veiculo_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" onAction="#veiculoAddBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="veiculo_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" onAction="#veiculoUpdateBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="veiculo_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" onAction="#veiculoClearBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="veiculo_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#veiculoDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <Separator orientation="VERTICAL" prefHeight="567.0" prefWidth="8.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="LugarFrontForm" layoutX="20.0" layoutY="19.0" prefHeight="655.0" prefWidth="1137.0" visible="false">
+                           <children>
+                              <AnchorPane layoutY="-1.0" prefHeight="639.0" prefWidth="805.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="-1.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="white-form" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="lugar_tableView" layoutX="15.0" layoutY="8.0" onMouseClicked="#lugarSelectData" prefHeight="635.0" prefWidth="784.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="7.0">
+                                       <columns>
+                                          <TableColumn fx:id="lugar_colunaCNPJ" prefWidth="266.4000244140625" text="CNPJ" />
+                                          <TableColumn fx:id="lugar_colunaLocal" prefWidth="147.199951171875" text="Local" />
+                                          <TableColumn fx:id="lugar_colunaEndereco" prefWidth="155.2000732421875" text="Endereço" />
+                                          <TableColumn fx:id="lugar_colunaAcomodacao" prefWidth="136.80010986328125" text="Acomodação" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutY="-1.0" prefHeight="639.0" prefWidth="302.0" stylesheets="@crudDesign.css" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="-1.0">
+                                 <styleClass>
+                                    <String fx:value="border" />
+                                    <String fx:value="white-form" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="21.0" text="CNPJ">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="lugar_CNPJ" layoutX="14.0" layoutY="48.0" prefHeight="30.0" prefWidth="277.0" />
+                                    <Label layoutX="14.0" layoutY="96.0" text="Local">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="lugar_Local" layoutX="13.0" layoutY="125.0" prefHeight="30.0" prefWidth="279.0" />
+                                    <Label layoutX="14.0" layoutY="172.0" text="Endereço">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="lugar_Endereco" layoutX="14.0" layoutY="199.0" prefHeight="30.0" prefWidth="280.0" />
+                                    <Label layoutX="14.0" layoutY="248.0" text="Acomodação">
+                                       <font>
+                                          <Font name="Arial" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="lugar_Acomodacao" layoutX="14.0" layoutY="274.0" prefHeight="33.0" prefWidth="280.0" />
+                                    <Button fx:id="lugar_addBtn" layoutX="35.0" layoutY="510.0" mnemonicParsing="false" onAction="#lugarAddBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Adicionar" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="35.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="lugar_editarBtn" layoutX="154.0" layoutY="509.0" mnemonicParsing="false" onAction="#lugarUpdateBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Editar" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="38.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="lugar_limparBtn" layoutX="36.0" layoutY="555.0" mnemonicParsing="false" onAction="#lugarClearBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Limpar" AnchorPane.bottomAnchor="40.8" AnchorPane.leftAnchor="36.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="lugar_DeletarBtn" layoutX="154.0" layoutY="556.0" mnemonicParsing="false" onAction="#lugarDeleteBtn" prefHeight="38.0" prefWidth="110.0" styleClass="btn" stylesheets="@crudDesign.css" text="Deletar" AnchorPane.bottomAnchor="40.80000000000007" AnchorPane.rightAnchor="38.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
