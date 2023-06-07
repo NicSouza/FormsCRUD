@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,6 +41,54 @@ import javafx.stage.Stage;
  */
 public class CRUDController implements Initializable {
 
+    @FXML
+    private DatePicker viagem_Chegada;
+
+    @FXML
+    private Button viagem_DeletarBtn;
+
+    @FXML
+    private TextField viagem_Destino;
+
+    @FXML
+    private DatePicker viagem_Ida;
+
+    @FXML
+    private TextField viagem_Origem;
+
+    @FXML
+    private TextField viagem_Passagem;
+
+    @FXML
+    private Button viagem_addBtn;
+
+    @FXML
+    private TableColumn<viagemForm, String> viagem_colunaChegada;
+
+    @FXML
+    private TableColumn<viagemForm, String> viagem_colunaDestino;
+
+    @FXML
+    private TableColumn<viagemForm, String> viagem_colunaIda;
+
+    @FXML
+    private TableColumn<viagemForm, String> viagem_colunaOrigem;
+
+    @FXML
+    private TableColumn<viagemForm, String> viagem_colunaPassagem;
+
+    @FXML
+    private Button viagem_editarBtn;
+
+    @FXML
+    private Button viagem_limparBtn;
+
+    @FXML
+    private TableView<viagemForm> viagem_tableView;
+    
+    @FXML
+    private AnchorPane ViagemFrontForm;
+    
     @FXML
     private AnchorPane LugarFrontForm;
 
@@ -188,7 +237,7 @@ public class CRUDController implements Initializable {
 
     private Alert alert;
 
-    
+    //PESSOA
     public void pessoaAddBtn() {
 
         connect = database.connect();
@@ -440,6 +489,7 @@ public class CRUDController implements Initializable {
 
     }
     
+    // VEICULO
     public void veiculoAddBtn() {
 
         connect = database.connect();
@@ -685,7 +735,9 @@ public class CRUDController implements Initializable {
         veiculo_Cor.setText(String.valueOf(vData.getCor()));
 
     }
-
+    
+    // LUGAR
+    
     public void lugarAddBtn() {
 
         connect = database.connect();
@@ -932,25 +984,34 @@ public class CRUDController implements Initializable {
 
     }
 
+    // VIAGEM
+
+    //TROCA DE FORMS
    public void switchForm(ActionEvent event){
         
         if(event.getSource() == formPessoa_btn){
             PessoaFrontForm.setVisible(true);
             VeiculoFrontForm.setVisible(false);
             LugarFrontForm.setVisible(false);
+            ViagemFrontForm.setVisible(false);
         
         }else if(event.getSource() == formVeiculo_btn){
             PessoaFrontForm.setVisible(false);
             VeiculoFrontForm.setVisible(true);
             LugarFrontForm.setVisible(false);
+            ViagemFrontForm.setVisible(false);
         }else if(event.getSource() == formLugar_btn){
             PessoaFrontForm.setVisible(false);
             VeiculoFrontForm.setVisible(false);
             LugarFrontForm.setVisible(true); 
+            ViagemFrontForm.setVisible(false);
+        }else if(event.getSource() == formViagem_btn){
+            PessoaFrontForm.setVisible(false);
+            VeiculoFrontForm.setVisible(false);
+            LugarFrontForm.setVisible(false); 
+            ViagemFrontForm.setVisible(true);
         }
     }
-    
-    
    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
